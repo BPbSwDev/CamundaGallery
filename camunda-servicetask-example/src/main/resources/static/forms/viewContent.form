@@ -1,0 +1,23 @@
+{
+  "components": [
+    {
+      "label": "contentRejection",
+      "type": "textfield",
+      "layout": {
+        "row": "Row_00sd1xo",
+        "columns": null
+      },
+      "id": "Field_06tv6jv",
+      "key": "content"
+    }
+  ],
+  "type": "default",
+  "id": "viewContent",
+  "exporter": {
+    "name": "Camunda Modeler",
+    "version": "5.10.0"
+  },
+  "executionPlatform": "Camunda Platform",
+  "executionPlatformVersion": "7.19.0",
+  "schemaVersion": 8
+}
