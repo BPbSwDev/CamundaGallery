@@ -1,4 +1,4 @@
-package com.example.camunda;
+package com.example.usertask;
 
 import org.camunda.bpm.spring.boot.starter.annotation.EnableProcessApplication;
 import org.springframework.boot.SpringApplication;

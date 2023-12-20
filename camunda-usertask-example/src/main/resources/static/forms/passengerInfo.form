@@ -17,7 +17,10 @@
         "columns": null
       },
       "id": "Field_056tlgj",
-      "key": "fullNamePassenger"
+      "key": "fullNamePassenger",
+      "validate": {
+        "required": true
+      }
     },
     {
       "label": "ID",
@@ -27,7 +30,10 @@
         "columns": null
       },
       "id": "Field_0zqj9lk",
-      "key": "idPassenger"
+      "key": "idPassenger",
+      "validate": {
+        "required": true
+      }
     }
   ],
   "type": "default",
