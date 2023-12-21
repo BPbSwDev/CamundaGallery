@@ -11,13 +11,17 @@ const client = new Client(config);
 // susbscribe to the topic: 'SendLetter'
 client.subscribe("SendLetter", async function({ task, taskService }) {
 
-    const bookTitle = task.variables.get("book");
-    console.log("** Reminder to Read: "+ bookTitle + "**");
+    const email = task.variables.get("email");
+    const content = task.variables.get("content")
+    const comments = task.variables.get("comments")
 
-    const austriaResponse = "Sorry Laff can't help, BTW. Prussia wants a quick word with you.."
+    console.log("** Tweet ar" +
+        "info: \nemail:"+ email + "\ncontent:"+content+"\ncomments: "+comments+"**");
+
+    const status = "Tweet rejected"
     const processVariables = new Variables();
 
-    processVariables.set("austriaResponse", austriaResponse);
+    processVariables.set("status", status);
     // complete the task
   await taskService.complete(task, processVariables);
 });
