@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<bpmn:definitions xmlns:bpmn="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:dc="http://www.omg.org/spec/DD/20100524/DC" xmlns:camunda="http://camunda.org/schema/1.0/bpmn" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:di="http://www.omg.org/spec/DD/20100524/DI" xmlns:modeler="http://camunda.org/schema/modeler/1.0" id="Definitions_1a2ijtr" targetNamespace="http://bpmn.io/schema/bpmn" exporter="Camunda Modeler" exporterVersion="5.10.0" modeler:executionPlatform="Camunda Platform" modeler:executionPlatformVersion="7.19.0">
+  <bpmn:process id="Process_1k5qeuh" name="User information" isExecutable="true">
+    <bpmn:startEvent id="StartEvent_1">
+      <bpmn:outgoing>Flow_157aa6y</bpmn:outgoing>
+    </bpmn:startEvent>
+    <bpmn:sequenceFlow id="Flow_157aa6y" sourceRef="StartEvent_1" targetRef="Activity_0vcydq7" />
+    <bpmn:scriptTask id="Activity_0v52xwb" name="Print information in console spring boot" scriptFormat="groovy" camunda:resultVariable="output">
+      <bpmn:incoming>Flow_1pci7mv</bpmn:incoming>
+      <bpmn:outgoing>Flow_16kwzv5</bpmn:outgoing>
+      <bpmn:script>System.out.println("User information");
+System.out.println("Name: "+name);
+System.out.println("Age: "+age);
+if(age &gt;= 18){
+output = "adult"
+}else{
+output = "child"
+}</bpmn:script>
+    </bpmn:scriptTask>
+    <bpmn:sequenceFlow id="Flow_1pci7mv" sourceRef="Activity_0vcydq7" targetRef="Activity_0v52xwb" />
+    <bpmn:userTask id="Activity_0vcydq7" name="Type information">
+      <bpmn:extensionElements>
+        <camunda:formData>
+          <camunda:formField id="name" label="Username" type="string" />
+          <camunda:formField id="age" label="Age in years" type="long" />
+        </camunda:formData>
+      </bpmn:extensionElements>
+      <bpmn:incoming>Flow_157aa6y</bpmn:incoming>
+      <bpmn:outgoing>Flow_1pci7mv</bpmn:outgoing>
+    </bpmn:userTask>
+    <bpmn:endEvent id="Event_0p9a1mp">
+      <bpmn:incoming>Flow_10853k9</bpmn:incoming>
+    </bpmn:endEvent>
+    <bpmn:sequenceFlow id="Flow_16kwzv5" sourceRef="Activity_0v52xwb" targetRef="Activity_05749jd" />
+    <bpmn:userTask id="Activity_05749jd" name="View information">
+      <bpmn:extensionElements>
+        <camunda:formData>
+          <camunda:formField id="name" label="Username" type="string" defaultValue="${name}" />
+          <camunda:formField id="age" label="Age in years" type="long" defaultValue="${age}" />
+          <camunda:formField id="output" type="string" defaultValue="${output}" />
+        </camunda:formData>
+      </bpmn:extensionElements>
+      <bpmn:incoming>Flow_16kwzv5</bpmn:incoming>
+      <bpmn:outgoing>Flow_1ali6pd</bpmn:outgoing>
+    </bpmn:userTask>
+    <bpmn:sequenceFlow id="Flow_1ali6pd" sourceRef="Activity_05749jd" targetRef="Gateway_1gk2uoy" />
+    <bpmn:exclusiveGateway id="Gateway_1gk2uoy">
+      <bpmn:incoming>Flow_1ali6pd</bpmn:incoming>
+      <bpmn:outgoing>Flow_10853k9</bpmn:outgoing>
+      <bpmn:outgoing>Flow_0xmaofe</bpmn:outgoing>
+    </bpmn:exclusiveGateway>
+    <bpmn:sequenceFlow id="Flow_10853k9" name="child" sourceRef="Gateway_1gk2uoy" targetRef="Event_0p9a1mp">
+      <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">${output=="child"}</bpmn:conditionExpression>
+    </bpmn:sequenceFlow>
+    <bpmn:sequenceFlow id="Flow_0xmaofe" name="adult" sourceRef="Gateway_1gk2uoy" targetRef="Activity_1aod82j">
+      <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">${output=="adult"}</bpmn:conditionExpression>
+    </bpmn:sequenceFlow>
+    <bpmn:scriptTask id="Activity_1aod82j" name="Test external resource" scriptFormat="groovy" camunda:resource="test.groovy">
+      <bpmn:incoming>Flow_0xmaofe</bpmn:incoming>
+      <bpmn:outgoing>Flow_027mwi6</bpmn:outgoing>
+    </bpmn:scriptTask>
+    <bpmn:endEvent id="Event_14z8f4i">
+      <bpmn:incoming>Flow_027mwi6</bpmn:incoming>
+    </bpmn:endEvent>
+    <bpmn:sequenceFlow id="Flow_027mwi6" sourceRef="Activity_1aod82j" targetRef="Event_14z8f4i" />
+  </bpmn:process>
+  <bpmndi:BPMNDiagram id="BPMNDiagram_1">
+    <bpmndi:BPMNPlane id="BPMNPlane_1" bpmnElement="Process_1k5qeuh">
+      <bpmndi:BPMNShape id="_BPMNShape_StartEvent_2" bpmnElement="StartEvent_1">
+        <dc:Bounds x="179" y="249" width="36" height="36" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_1bqxeg0_di" bpmnElement="Activity_0v52xwb">
+        <dc:Bounds x="450" y="227" width="100" height="80" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_12z3syp_di" bpmnElement="Activity_0vcydq7">
+        <dc:Bounds x="280" y="227" width="100" height="80" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_0i9yga1_di" bpmnElement="Activity_05749jd">
+        <dc:Bounds x="600" y="227" width="100" height="80" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Gateway_1gk2uoy_di" bpmnElement="Gateway_1gk2uoy" isMarkerVisible="true">
+        <dc:Bounds x="765" y="242" width="50" height="50" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Event_14z8f4i_di" bpmnElement="Event_14z8f4i">
+        <dc:Bounds x="1162" y="102" width="36" height="36" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Event_0p9a1mp_di" bpmnElement="Event_0p9a1mp">
+        <dc:Bounds x="1162" y="249" width="36" height="36" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_0nyiz4c_di" bpmnElement="Activity_1aod82j">
+        <dc:Bounds x="950" y="80" width="100" height="80" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge id="Flow_157aa6y_di" bpmnElement="Flow_157aa6y">
+        <di:waypoint x="215" y="267" />
+        <di:waypoint x="280" y="267" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_1pci7mv_di" bpmnElement="Flow_1pci7mv">
+        <di:waypoint x="380" y="267" />
+        <di:waypoint x="450" y="267" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_16kwzv5_di" bpmnElement="Flow_16kwzv5">
+        <di:waypoint x="550" y="267" />
+        <di:waypoint x="600" y="267" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_1ali6pd_di" bpmnElement="Flow_1ali6pd">
+        <di:waypoint x="700" y="267" />
+        <di:waypoint x="765" y="267" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_10853k9_di" bpmnElement="Flow_10853k9">
+        <di:waypoint x="815" y="267" />
+        <di:waypoint x="1162" y="267" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="859" y="249" width="23" height="14" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_0xmaofe_di" bpmnElement="Flow_0xmaofe">
+        <di:waypoint x="790" y="242" />
+        <di:waypoint x="790" y="120" />
+        <di:waypoint x="950" y="120" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="793" y="178" width="25" height="14" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_027mwi6_di" bpmnElement="Flow_027mwi6">
+        <di:waypoint x="1050" y="120" />
+        <di:waypoint x="1162" y="120" />
+      </bpmndi:BPMNEdge>
+    </bpmndi:BPMNPlane>
+  </bpmndi:BPMNDiagram>
+</bpmn:definitions>
