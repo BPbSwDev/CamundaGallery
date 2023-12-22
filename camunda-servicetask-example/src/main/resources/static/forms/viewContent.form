@@ -1,14 +1,83 @@
 {
   "components": [
     {
-      "label": "contentRejection",
+      "text": "# Rejection info",
+      "type": "text",
+      "layout": {
+        "row": "Row_15p5azw",
+        "columns": null
+      },
+      "id": "Field_1n4pgdc"
+    },
+    {
+      "label": "UserId",
       "type": "textfield",
       "layout": {
         "row": "Row_00sd1xo",
         "columns": null
       },
       "id": "Field_06tv6jv",
-      "key": "content"
+      "key": "userId",
+      "validate": {
+        "required": false
+      },
+      "disabled": true
+    },
+    {
+      "label": "Email typing",
+      "type": "textfield",
+      "layout": {
+        "row": "Row_01nu40f",
+        "columns": null
+      },
+      "id": "Field_1uqlyjz",
+      "key": "email",
+      "disabled": true
+    },
+    {
+      "label": "Tweet content",
+      "type": "textfield",
+      "layout": {
+        "row": "Row_0c9po26",
+        "columns": null
+      },
+      "id": "Field_141zgxx",
+      "key": "content",
+      "disabled": true
+    },
+    {
+      "label": "Comments",
+      "type": "textfield",
+      "layout": {
+        "row": "Row_022n5p0",
+        "columns": null
+      },
+      "id": "Field_145k7l2",
+      "key": "comments",
+      "disabled": true
+    },
+    {
+      "label": "Email connector",
+      "type": "textfield",
+      "layout": {
+        "row": "Row_0ymxtox",
+        "columns": null
+      },
+      "id": "Field_15stme9",
+      "key": "emailConnector",
+      "description": "this is the email obtain with the REST",
+      "disabled": true
+    },
+    {
+      "label": "Is approved",
+      "type": "textfield",
+      "layout": {
+        "row": "Row_0dt1n4a",
+        "columns": null
+      },
+      "id": "Field_0xjupaa",
+      "key": "approved",
+      "disabled": true
     }
   ],
   "type": "default",

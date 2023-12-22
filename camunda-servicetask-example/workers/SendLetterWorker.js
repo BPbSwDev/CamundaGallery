@@ -15,7 +15,7 @@ client.subscribe("SendLetter", async function({ task, taskService }) {
     const content = task.variables.get("content")
     const comments = task.variables.get("comments")
 
-    console.log("** Tweet ar" +
+    console.log("** Tweet " +
         "info: \nemail:"+ email + "\ncontent:"+content+"\ncomments: "+comments+"**");
 
     const status = "Tweet rejected"
